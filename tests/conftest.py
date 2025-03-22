@@ -3,12 +3,25 @@ import pytest
 from src.category import Category
 from src.product import Product
 
+@pytest.fixture(autouse=True)
+def reset_product_list():
+    # Сбрасываем список продуктов перед каждым тестом
+    Product.products = []
+
 
 @pytest.fixture
 def product():
     return Product(
         name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=5
     )
+
+
+@pytest.fixture
+def new_product():
+    return {"name": "Samsung Galaxy S23 Ultra",
+         "description": "256GB, Серый цвет, 200MP камера",
+         "price": 180000.0,
+         "quantity": 5}
 
 
 @pytest.fixture
@@ -33,3 +46,39 @@ def category_2():
                     "станет вашим другом и помощником",
         products=[Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)],
     )
+
+
+@pytest.fixture
+def json_for_test():
+    return [
+        {
+            "name": "Смартфоны",
+            "description": "Разнообразные смартфоны",
+            "products": [
+                {
+                    "name": "Samsung Galaxy S23",
+                    "description": "Лучший смартфон 2023 года",
+                    "price": 999.99,
+                    "quantity": 10
+                },
+                {
+                    "name": "iPhone 14",
+                    "description": "Новый iPhone от Apple",
+                    "price": 1099.99,
+                    "quantity": 5
+                }
+            ]
+        },
+        {
+            "name": "Ноутбуки",
+            "description": "Мощные ноутбуки для работы и игр",
+            "products": [
+                {
+                    "name": "Dell XPS 13",
+                    "description": "Компактный и мощный ноутбук",
+                    "price": 1299.99,
+                    "quantity": 7
+                }
+            ]
+        }
+    ]
