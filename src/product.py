@@ -1,11 +1,54 @@
-class Product:
-    name: str
-    description: str
-    price: float
-    quantity: int
+from typing import Any
 
-    def __init__(self, name, description, price, quantity): # type: ignore
+
+class Product:
+    products: list = []
+
+    def __init__(self, name, description, price, quantity):  # type: ignore
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
+
+        Product.products.append(self)
+
+    @property
+    def price(self) -> Any:
+        return self.__price
+
+    @price.setter
+    def price(self, new_price: float) -> Any:
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+            return
+
+        if new_price < self.__price:
+            confirmation = input(
+                f"Вы уверены, что хотите понизить цену с {self.__price} до {new_price}? " f"Если да введите y! (y/n): "
+            )
+            if confirmation.lower() != "y":
+                print("Цена не изменена.")
+                return
+
+        self.__price = new_price
+
+    @classmethod
+    def new_product(cls, product_data: dict) -> Any:
+        name = product_data.get("name")
+        description = product_data.get("description")
+        price = product_data.get("price")
+        quantity = product_data.get("quantity")
+
+        # Проверка на существующий товар
+        for existing_product in cls.products:
+            if existing_product.name == name:
+                # Если товар существует, обновляем количество и цену
+                existing_product.quantity += quantity
+                if price > existing_product.price:
+                    existing_product.price = price  # Устанавливаем более высокую цену
+                return existing_product
+
+        # Если товар не существует, создаем новый
+        new_product = cls(name, description, price, quantity)
+        category.add_product(new_product)
+        return new_product
