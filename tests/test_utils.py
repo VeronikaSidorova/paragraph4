@@ -1,16 +1,12 @@
 import json
-from unittest.mock import patch, mock_open
+from unittest.mock import mock_open, patch
 
-from src.utils import read_json, create_objects_from_json
+from src.utils import create_objects_from_json, read_json
 
 
-def test_read_json():
+def test_read_json():  # type: ignore
     # Пример данных, которые мы хотим вернуть из нашего "файла"
-    mock_data = {
-        "name": "Test",
-        "value": 42,
-        "active": True
-    }
+    mock_data = {"name": "Test", "value": 42, "active": True}
 
     # Преобразуем mock_data в строку JSON
     mock_json = json.dumps(mock_data)
@@ -25,7 +21,7 @@ def test_read_json():
     assert result == mock_data
 
 
-def test_create_objects_from_json(json_for_test):
+def test_create_objects_from_json(json_for_test):  # type: ignore
     # Вызов функции
     categories = create_objects_from_json(json_for_test)
 
