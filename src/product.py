@@ -12,6 +12,12 @@ class Product:
 
         Product.products.append(self)
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other) -> Any:  # type: ignore
+        return self.__price * self.quantity + other.__price * other.quantity
+
     @property
     def price(self) -> Any:
         return self.__price
