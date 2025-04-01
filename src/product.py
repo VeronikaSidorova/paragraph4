@@ -13,10 +13,12 @@ class Product:
         Product.products.append(self)
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
 
-    def __add__(self, other) -> Any:  # type: ignore
-        return self.__price * self.quantity + other.__price * other.quantity
+    def __add__(self, other): #type: ignore
+        if type(other) is Product:
+            return self.__price * self.quantity + other.__price * other.quantity
+        raise TypeError
 
     @property
     def price(self) -> Any:

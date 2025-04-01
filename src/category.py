@@ -23,10 +23,11 @@ class Category:
         return f"{self.name}, количество продуктов: {sum_quantity} шт."
 
     def add_product(self, product: Any) -> Any:
-        if not isinstance(product, Product):
-            raise ValueError("Только объекты класса Product могут быть добавлены.")
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products(self) -> str:
