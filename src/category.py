@@ -14,7 +14,7 @@ class Category:
         self.__products = products if products else []
 
         Category.category_count += 1
-        Category.product_count += len(Product.products) if Product.products else 0
+        Category.product_count = len(Product.products) if Product.products else 0
 
     def __str__(self) -> str:
         sum_quantity = 0

@@ -21,8 +21,8 @@ def test_category_init(category_1, category_2):  # type: ignore
     assert category_1.category_count == 2
     assert category_2.category_count == 2
 
-    assert category_1.product_count == 7
-    assert category_2.product_count == 7
+    assert category_1.product_count == 4
+    assert category_2.product_count == 4
 
 
 def test_add_product(category_1, new_product):  # type: ignore
