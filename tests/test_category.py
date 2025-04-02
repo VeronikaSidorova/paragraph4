@@ -32,9 +32,9 @@ def test_add_product(category_1, new_product):  # type: ignore
 
 def test_category_products_property(category_1):  # type: ignore
     assert category_1.products == (
-        "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
-        "Iphone 15, 210000.0 руб. Остаток: 8 шт."
-        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт."
+        "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
     )
 
 
@@ -45,9 +45,9 @@ def test_category_str(category_1):  # type: ignore
 def test_category_iterator(category_iterator):  # type: ignore
     iter(category_iterator)
     assert category_iterator.index == 0
-    assert next(category_iterator) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
-    assert next(category_iterator) == "Iphone 15, 210000.0 руб. Остаток: 8 шт."
-    assert next(category_iterator) == "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт."
+    assert next(category_iterator) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
+    assert next(category_iterator) == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+    assert next(category_iterator) == "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
 
     with pytest.raises(StopIteration):
         next(category_iterator)

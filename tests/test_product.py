@@ -1,3 +1,5 @@
+import pytest
+
 from src.product import Product
 
 
@@ -48,10 +50,15 @@ def test_product_create():  # type: ignore
 
 
 def test_product_str(product_1):  # type: ignore
-    assert str(product_1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+    assert str(product_1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
 
 
 def test_product_add(product_1, product_2, product_3):  # type: ignore
     assert product_1 + product_2 == 2580000.0
     assert product_1 + product_3 == 1334000.0
     assert product_2 + product_3 == 2114000.0
+
+
+def test_product_add_error(product_1, product_smartphone_1): #type: ignore
+    with pytest.raises(TypeError):
+        result = product_1 + product_smartphone_1
