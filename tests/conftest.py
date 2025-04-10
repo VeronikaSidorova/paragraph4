@@ -115,3 +115,13 @@ def product_lawngrass_1():  # type: ignore
 @pytest.fixture
 def product_lawngrass_2():  # type: ignore
     return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+
+@pytest.fixture
+def category_without_product(): # type: ignore
+    return Category(
+        name="Телевизоры",
+        description="Современный телевизор, который позволяет наслаждаться просмотром, "
+        "станет вашим другом и помощником",
+        products=[],
+    )

@@ -51,3 +51,8 @@ def test_category_iterator(category_iterator):  # type: ignore
 
     with pytest.raises(StopIteration):
         next(category_iterator)
+
+
+def test_middle_price(category_1, category_without_product):  # type: ignore
+    assert category_1.middle_price() == 140333.33
+    assert category_without_product.middle_price() == 0

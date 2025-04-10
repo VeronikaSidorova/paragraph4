@@ -62,3 +62,10 @@ def test_product_add(product_1, product_2, product_3):  # type: ignore
 def test_product_add_error(product_1, product_smartphone_1):  # type: ignore
     with pytest.raises(TypeError):
         result = product_1 + product_smartphone_1
+
+
+def test_product_without_quantity():  # type: ignore
+    try:
+        Product("Iphone 16", "512GB, Space", 180000.0, 0)
+    except ValueError as e:
+        assert str(e) == "Товар с нулевым количеством не может быть добавлен"
