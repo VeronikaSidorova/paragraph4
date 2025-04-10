@@ -1,7 +1,10 @@
 from typing import Any
 
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
-class Product:
+
+class Product(BaseProduct, PrintMixin):
     products: list = []
 
     def __init__(self, name, description, price, quantity):  # type: ignore
@@ -9,13 +12,14 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
         Product.products.append(self)
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
 
-    def __add__(self, other): #type: ignore
+    def __add__(self, other):  # type: ignore
         if type(other) is Product:
             return self.__price * self.quantity + other.__price * other.quantity
         raise TypeError

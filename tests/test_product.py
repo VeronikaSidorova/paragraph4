@@ -59,6 +59,6 @@ def test_product_add(product_1, product_2, product_3):  # type: ignore
     assert product_2 + product_3 == 2114000.0
 
 
-def test_product_add_error(product_1, product_smartphone_1): #type: ignore
+def test_product_add_error(product_1, product_smartphone_1):  # type: ignore
     with pytest.raises(TypeError):
         result = product_1 + product_smartphone_1
